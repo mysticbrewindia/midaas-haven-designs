@@ -48,11 +48,11 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center space-x-6 text-sm">
             <div className="flex items-center space-x-2">
               <Phone size={16} className="text-midaas-gold" />
-              <span className={`${isScrolled ? 'text-midaas' : 'text-white'}`}>+1 (855) 999-9988</span>
+              <span className={`${isScrolled ? 'text-midaas' : 'text-white'}`}>+91 9830907077</span>
             </div>
             <div className="flex items-center space-x-2">
               <Mail size={16} className="text-midaas-gold" />
-              <span className={`${isScrolled ? 'text-midaas' : 'text-white'}`}>info@midaas.net</span>
+              <span className={`${isScrolled ? 'text-midaas' : 'text-white'}`}>email@midaas.net</span>
             </div>
           </div>
 
@@ -95,11 +95,11 @@ const Navbar = () => {
               <div className="pt-4 border-t border-gray-200 mt-4">
                 <div className="flex items-center space-x-2 py-2">
                   <Phone size={16} className="text-midaas-gold" />
-                  <span className="text-midaas">+1 (855) 999-9988</span>
+                  <span className="text-midaas">+91 9830907077</span>
                 </div>
                 <div className="flex items-center space-x-2 py-2">
                   <Mail size={16} className="text-midaas-gold" />
-                  <span className="text-midaas">info@midaas.net</span>
+                  <span className="text-midaas">email@midaas.net</span>
                 </div>
               </div>
             </div>

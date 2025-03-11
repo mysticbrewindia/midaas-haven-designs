@@ -51,15 +51,18 @@ const Footer = () => {
             <address className="not-italic text-gray-300 space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
-                <p>One Marina, 1000 Redwood City, CA 94063</p>
+                <p>7/7 Haltu West Bengal, Kolkata - 700078</p>
               </div>
               <div className="flex items-start space-x-3">
                 <Mail className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
-                <p>info@midaas.net</p>
+                <div>
+                  <p>email@midaas.net</p>
+                  <p>midaas.solutions@gmail.com</p>
+                </div>
               </div>
               <div className="flex items-start space-x-3">
                 <Phone className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
-                <p>+1 (855) 999-9988</p>
+                <p>+91 9830907077</p>
               </div>
             </address>
           </div>

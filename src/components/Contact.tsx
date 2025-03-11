@@ -141,7 +141,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-lg">Our Location</h4>
-                      <p className="text-gray-300">123 Elegance Avenue, Suite 400, New York, NY 10001</p>
+                      <p className="text-gray-300">7/7 Haltu West Bengal, Kolkata - 700078</p>
                     </div>
                   </div>
                   
@@ -151,7 +151,8 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-lg">Email Us</h4>
-                      <p className="text-gray-300">contact@midaasenterprises.com</p>
+                      <p className="text-gray-300">email@midaas.net</p>
+                      <p className="text-gray-300">midaas.solutions@gmail.com</p>
                     </div>
                   </div>
                   
@@ -161,7 +162,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-lg">Call Us</h4>
-                      <p className="text-gray-300">+1 (555) 123-4567</p>
+                      <p className="text-gray-300">+91 9830907077</p>
                     </div>
                   </div>
                 </div>
