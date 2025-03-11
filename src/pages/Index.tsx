@@ -1,42 +1,34 @@
 
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Services from "@/components/Services";
-import About from "@/components/About";
-import Portfolio from "@/components/Portfolio";
-import Testimonials from "@/components/Testimonials";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { useEffect } from "react";
+import { Navbar, Hero, Services, About, Portfolio, Testimonials, Contact, Footer } from "@/components";
+import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
-  // Implement smooth scrolling behavior
+  const location = useLocation();
+  const sections = useRef<Record<string, HTMLElement | null>>({});
+
   useEffect(() => {
-    const handleScrollToAnchor = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'A') {
-        const href = target.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({
-              behavior: 'smooth'
-            });
-            
-            // Update URL without page reload
-            window.history.pushState(null, '', href);
-          }
-        }
-      }
+    // Collect all sections
+    sections.current = {
+      home: document.getElementById('home'),
+      services: document.getElementById('services'),
+      about: document.getElementById('about'),
+      portfolio: document.getElementById('portfolio'),
+      testimonials: document.getElementById('testimonials'),
+      contact: document.getElementById('contact'),
     };
 
-    document.body.addEventListener('click', handleScrollToAnchor);
-    
-    return () => {
-      document.body.removeEventListener('click', handleScrollToAnchor);
-    };
-  }, []);
+    // Check if there's a hash in the URL when the component mounts
+    if (location.hash) {
+      const targetId = location.hash.substring(1);
+      setTimeout(() => {
+        const targetElement = sections.current[targetId];
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen">

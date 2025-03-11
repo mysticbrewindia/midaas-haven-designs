@@ -1,5 +1,6 @@
 
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -26,30 +27,40 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-lg font-semibold mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              <li><a href="#home" className="text-gray-300 hover:text-midaas-gold transition-colors">Home</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-midaas-gold transition-colors">Services</a></li>
-              <li><a href="#about" className="text-gray-300 hover:text-midaas-gold transition-colors">About Us</a></li>
-              <li><a href="#portfolio" className="text-gray-300 hover:text-midaas-gold transition-colors">Portfolio</a></li>
-              <li><a href="#contact" className="text-gray-300 hover:text-midaas-gold transition-colors">Contact</a></li>
+              <li><Link to="/" className="text-gray-300 hover:text-midaas-gold transition-colors">Home</Link></li>
+              <li><Link to="/services/interior-design" className="text-gray-300 hover:text-midaas-gold transition-colors">Interior Design</Link></li>
+              <li><Link to="/services/financial-planning" className="text-gray-300 hover:text-midaas-gold transition-colors">Financial Planning</Link></li>
+              <li><Link to="/services/investment-advisory" className="text-gray-300 hover:text-midaas-gold transition-colors">Investment Advisory</Link></li>
+              <li><Link to="/#about" className="text-gray-300 hover:text-midaas-gold transition-colors">About Us</Link></li>
+              <li><Link to="/#contact" className="text-gray-300 hover:text-midaas-gold transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-serif text-lg font-semibold mb-6">Services</h4>
             <ul className="space-y-3">
-              <li><a href="#services" className="text-gray-300 hover:text-midaas-gold transition-colors">Interior Design</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-midaas-gold transition-colors">Financial Planning</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-midaas-gold transition-colors">Investment Advisory</a></li>
-              <li><a href="#services" className="text-gray-300 hover:text-midaas-gold transition-colors">Business Consulting</a></li>
+              <li><Link to="/services/interior-design" className="text-gray-300 hover:text-midaas-gold transition-colors">Interior Design</Link></li>
+              <li><Link to="/services/financial-planning" className="text-gray-300 hover:text-midaas-gold transition-colors">Financial Planning</Link></li>
+              <li><Link to="/services/investment-advisory" className="text-gray-300 hover:text-midaas-gold transition-colors">Investment Advisory</Link></li>
+              <li><Link to="/services/business-consulting" className="text-gray-300 hover:text-midaas-gold transition-colors">Business Consulting</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-serif text-lg font-semibold mb-6">Contact Info</h4>
-            <address className="not-italic text-gray-300 space-y-3">
-              <p>123 Elegance Avenue, Suite 400, New York, NY 10001</p>
-              <p>contact@midaasenterprises.com</p>
-              <p>+1 (555) 123-4567</p>
+            <address className="not-italic text-gray-300 space-y-4">
+              <div className="flex items-start space-x-3">
+                <MapPin className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
+                <p>One Marina, 1000 Redwood City, CA 94063</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Mail className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
+                <p>info@midaas.net</p>
+              </div>
+              <div className="flex items-start space-x-3">
+                <Phone className="text-midaas-gold flex-shrink-0 mt-1" size={18} />
+                <p>+1 (855) 999-9988</p>
+              </div>
             </address>
           </div>
         </div>

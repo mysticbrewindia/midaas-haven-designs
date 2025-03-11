@@ -1,15 +1,27 @@
 
-import { Paintbrush, TrendingUp, Building, LineChart } from "lucide-react";
+import { useState } from "react";
+import { Paintbrush, TrendingUp, Building, LineChart, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const ServiceCard = ({ icon: Icon, title, description, image, delay }: { 
+const ServiceCard = ({ icon: Icon, title, description, image, delay, slug }: { 
   icon: any, 
   title: string, 
   description: string, 
   image: string,
-  delay: string 
+  delay: string,
+  slug: string
 }) => {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    navigate(`/services/${slug}`);
+  };
+  
   return (
-    <div className={`group relative overflow-hidden rounded-xl ${delay}`}>
+    <div 
+      className={`group relative overflow-hidden rounded-xl ${delay} cursor-pointer`}
+      onClick={handleClick}
+    >
       <div className="absolute inset-0">
         <img 
           src={image} 
@@ -25,6 +37,10 @@ const ServiceCard = ({ icon: Icon, title, description, image, delay }: {
         </div>
         <h3 className="text-2xl font-serif font-semibold mb-3 text-white">{title}</h3>
         <p className="text-gray-300">{description}</p>
+        <div className="mt-4 flex items-center text-midaas-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="mr-2">Learn more</span>
+          <ArrowRight size={16} />
+        </div>
       </div>
     </div>
   );
@@ -37,28 +53,32 @@ const Services = () => {
       title: "Interior Design",
       description: "Creating sophisticated living and working spaces that reflect your unique personality and requirements.",
       image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80",
-      delay: "animate-fade-in delay-[100ms]"
+      delay: "animate-fade-in delay-[100ms]",
+      slug: "interior-design"
     },
     {
       icon: TrendingUp,
       title: "Financial Planning",
       description: "Strategic financial planning tailored to your goals, balancing growth, security, and risk management.",
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
-      delay: "animate-fade-in delay-[200ms]"
+      delay: "animate-fade-in delay-[200ms]",
+      slug: "financial-planning"
     },
     {
       icon: Building,
       title: "Investment Advisory",
       description: "Expert guidance on investment opportunities, portfolio management, and wealth generation strategies.",
       image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&q=80",
-      delay: "animate-fade-in delay-[300ms]"
+      delay: "animate-fade-in delay-[300ms]",
+      slug: "investment-advisory"
     },
     {
       icon: LineChart,
       title: "Business Consulting",
       description: "Strategic advisory services to help businesses optimize operations, enhance profitability, and scale effectively.",
       image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80",
-      delay: "animate-fade-in delay-[400ms]"
+      delay: "animate-fade-in delay-[400ms]",
+      slug: "business-consulting"
     }
   ];
 
@@ -81,6 +101,7 @@ const Services = () => {
               description={service.description}
               image={service.image}
               delay={service.delay}
+              slug={service.slug}
             />
           ))}
         </div>
