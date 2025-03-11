@@ -1,5 +1,7 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const categories = ["All", "Interior Design", "Financial Planning", "Investment Projects", "Consulting"];
 
@@ -8,42 +10,42 @@ const projects = [
     id: 1,
     title: "Luxury Apartment Redesign",
     category: "Interior Design",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&q=80",
     description: "Complete transformation of a penthouse apartment with custom furnishings and lighting."
   },
   {
     id: 2,
     title: "Retirement Portfolio Strategy",
     category: "Financial Planning",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1560520653-9e0e4c89eb11?auto=format&fit=crop&q=80",
     description: "Long-term financial planning and investment strategy for early retirement."
   },
   {
     id: 3,
     title: "Commercial Office Renovation",
     category: "Interior Design",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80",
     description: "Modern office space designed for productivity, collaboration, and employee wellbeing."
   },
   {
     id: 4,
     title: "Diversified Investment Portfolio",
     category: "Investment Projects",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80",
     description: "Strategic allocation across multiple asset classes for optimal risk-adjusted returns."
   },
   {
     id: 5,
     title: "Business Growth Strategy",
     category: "Consulting",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80",
     description: "Comprehensive business analysis and strategic plan for a growing tech startup."
   },
   {
     id: 6,
     title: "Hospitality Interior Design",
     category: "Interior Design",
-    image: "/placeholder.svg",
+    image: "https://images.unsplash.com/photo-1618219878616-8d1aec4001fa?auto=format&fit=crop&q=80",
     description: "Elegant and functional design for a boutique hotel featuring custom elements."
   },
 ];
@@ -51,10 +53,21 @@ const projects = [
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [filteredProjects, setFilteredProjects] = useState(projects);
+  const navigate = useNavigate();
 
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
-    : projects.filter(project => project.category === activeCategory);
+  useEffect(() => {
+    if (activeCategory === "All") {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(projects.filter(project => project.category === activeCategory));
+    }
+  }, [activeCategory]);
+
+  const handleProjectClick = (projectId: number) => {
+    // Navigate to a detailed project page
+    navigate(`/portfolio/${projectId}`);
+  };
 
   return (
     <section id="portfolio" className="py-24 bg-midaas-light">
@@ -66,28 +79,31 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                activeCategory === category
-                  ? "bg-midaas text-white"
-                  : "bg-white text-midaas hover:bg-midaas-gold hover:text-white"
-              }`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        <Tabs defaultValue="All" className="mb-12">
+          <TabsList className="flex flex-wrap justify-center gap-2 mb-8 bg-transparent">
+            {categories.map((category) => (
+              <TabsTrigger 
+                key={category} 
+                value={category}
+                onClick={() => setActiveCategory(category)}
+                className={`px-4 py-2 rounded-full transition-all duration-300 ${
+                  activeCategory === category
+                    ? "bg-midaas text-white data-[state=active]:bg-midaas"
+                    : "bg-white text-midaas hover:bg-midaas-gold hover:text-white data-[state=active]:bg-white"
+                }`}
+              >
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => (
             <div 
               key={project.id} 
-              className="bg-white rounded-lg overflow-hidden shadow-md card-hover group animate-fade-in"
-              onClick={() => setSelectedProject(project.id)}
+              className="bg-white rounded-lg overflow-hidden shadow-md card-hover group animate-fade-in cursor-pointer"
+              onClick={() => handleProjectClick(project.id)}
             >
               <div className="relative overflow-hidden h-56">
                 <img 
